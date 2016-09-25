@@ -11,6 +11,13 @@ export default {
     authorName: 'Author\'s Name',
     postTitle: 'Post Title',
     postContent: 'Post Content',
+    createNewProduct: 'Add new product',
+    productName: 'Name',
+    productCode: 'Code',
+    productDescription: 'Description',
+    productPrice:'Price',
+    categoryName:'Category Name',
+    createNewCategory: 'Create New Category',
     submit: 'Submit',
     comment: `user {name} {value, plural,
     	  =0 {does not have any comments}
