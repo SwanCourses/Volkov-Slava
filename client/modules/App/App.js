@@ -31,11 +31,10 @@ export class App extends Component {
   render() {
     return (
       <div>
-        {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <div>
           <Helmet
-            title="MERN Starter - Blog App"
-            titleTemplate="%s - Blog App"
+            title="Index - Example App"
+            titleTemplate="%s - Example App"
             meta={[
               { charset: 'utf-8' },
               {
@@ -48,15 +47,14 @@ export class App extends Component {
               },
             ]}
           />
-          <Header
-            switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-            intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
-          />
-          <div className={styles.container}>
-            {this.props.children}
+          <div className={styles["flex-wrapper"]}>
+            <div className={styles.main}>
+              {this.props.children}
+            </div>
+            <div className={styles["side"] + ' ' + styles["left-side"]}></div>
+            <div className={styles["side"] + ' ' + styles["right-side"]}></div>
           </div>
-          <Footer />
+
         </div>
       </div>
     );
