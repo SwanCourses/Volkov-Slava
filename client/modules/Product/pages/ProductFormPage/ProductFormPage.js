@@ -4,12 +4,12 @@
 
 import React, { Component } from 'react';
 
-import { InjectIntl, intShape, FormattedMessage } from 'react-intl';
-import { Connect } from 'react-redux';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
-import { addProductRequest } from '../ProductActions';
+import { addProductRequest } from '../../ProductActions';
 
-import styles from 'ProductFormPage.css';
+import styles from './ProductFormPage.css';
 
 class ProductFormPage extends Component {
   constructor(props){

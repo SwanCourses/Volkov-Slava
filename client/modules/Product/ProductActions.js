@@ -2,11 +2,11 @@
  * Created by slava on 25.09.16.
  */
 
-import callApi, { callApiForm } from '../../util/apiCaller'
+import callApi, { callApiForm } from '../../util/apiCaller';
 
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 
-export function AddProduct(product) {
+export function addProduct(product) {
   return {
     type: ADD_PRODUCT,
     product

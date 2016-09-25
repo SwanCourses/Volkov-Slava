@@ -2,7 +2,7 @@
  * Created by slava on 25.09.16.
  */
 
-import { ADD_PRODUCT } from '../ProductActions'
+import { ADD_PRODUCT } from './ProductActions';
 
 const initialState = { data: []};
 
