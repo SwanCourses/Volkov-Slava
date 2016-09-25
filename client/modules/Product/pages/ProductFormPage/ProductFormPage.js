@@ -11,6 +11,8 @@ import { addProductRequest } from '../../ProductActions';
 
 import styles from './ProductFormPage.css';
 
+var SIZES = ["XS", "S", "M", "L", "XL"];
+
 class ProductFormPage extends Component {
   constructor(props){
     super(props);
@@ -27,8 +29,13 @@ class ProductFormPage extends Component {
     form.append('product[code]', this.state.code);
     form.append('product[price]', this.state.price);
     form.append('product[description]', this.state.description);
+    form.append('product[size]', this.state.size)
 
-    form.append('product[photo]', this.refs.photo.files[0], this.refs.photo.files[0].name);
+    // console.log("name: " + this.state.name);
+    // console.log("size: " + this.state.size);
+
+    for(let i = 0; i < this.refs.photo.files.length; i++)
+      form.append('product[photo]', this.refs.photo.files[i], this.refs.photo.files[i].name);
 
     this.props.dispatch(addProductRequest(form));
   };
@@ -54,8 +61,16 @@ class ProductFormPage extends Component {
                     className={styles['form-field']}
                     name="description"/>
 
+          <select onChange={this.onChange} name="size">
+            {
+              SIZES.map(function(item) {
+                return <option key={item}>{item}</option>;
+              })
+            }
+          </select>
+
           <div className={styles.photos}>
-            <input ref="photo" type="file" onChange={this.onFileLoad}/>
+            <input ref="photo" type="file" multiple onChange={this.onFileLoad}/>
           </div>
 
           <a className={styles['post-submit-button']} href="#" onClick={this.addProduct}><FormattedMessage id="submit"/></a>
