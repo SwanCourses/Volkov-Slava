@@ -28,7 +28,7 @@ class ProductFormPage extends Component {
     form.append('product[price]', this.state.price);
     form.append('product[description]', this.state.description);
 
-    form.append('product[photo]', this.refs.files[0], this.refs.photo.files[0].name);
+    form.append('product[photo]', this.refs.photo.files[0], this.refs.photo.files[0].name);
 
     this.props.dispatch(addProductRequest(form));
   };

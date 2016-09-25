@@ -26,7 +26,7 @@ export default function callApi(endpoint, method = 'get', body) {
 }
 
 export function callApiForm(endpoint, method = 'get', body) {
-  return fetch('${API_URL}/${endpoint}', {
+  return fetch(`${API_URL}/${endpoint}`, {
     method,
     body
   })
