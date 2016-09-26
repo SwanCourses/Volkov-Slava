@@ -34,6 +34,7 @@ export function addProduct(req, res) {
     newProduct.code = sanitizeHtml(newProduct.code);
     newProduct.name = sanitizeHtml(newProduct.name);
     newProduct.description = sanitizeHtml(newProduct.description);
+    newProduct.size = sanitizeHtml(newProduct.size);
 
     newProduct.cuid = cuid();
     for (let i = 0, file; file = req.files[i]; i++) {
