@@ -15,3 +15,11 @@
 .container .filter-panel {
   width: 300px;
 }
+
+.active {
+  colors: black;
+}
+
+.inactive {
+  color: gray;
+}

@@ -14,7 +14,7 @@ export class SelectComponent extends Component {
     return (
           <div>
             <label>{this.props.label }</label>
-            <select onChange={this.props.onChange} name={this.props.name}>
+            <select multiple={this.props.multiple} onChange={this.props.onChange} name={this.props.name} >
               {
                 this.props.options.map(function(item) {
                   return <option key={item}>{item}</option>;
