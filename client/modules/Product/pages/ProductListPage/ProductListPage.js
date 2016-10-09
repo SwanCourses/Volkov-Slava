@@ -24,7 +24,6 @@ class ProductListPage extends Component {
     else
       selectedGroups.push(e.target.name);
 
-    this.setState({groupFilters: selectedGroups});
     this.props.dispatch(setGroupFilter(selectedGroups));
   }
 
