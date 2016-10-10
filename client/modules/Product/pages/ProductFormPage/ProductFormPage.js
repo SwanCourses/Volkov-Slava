@@ -13,21 +13,32 @@ import { ColorsComponent } from '../../components/ColorsComponent';
 
 import styles from './ProductFormPage.css';
 
-var SIZES = ["XS", "S", "M", "L", "XL"];
-var COLORS_CAP = 5;
-var COLOR_PREFIX = "color_";
+const SIZES = ["XS", "S", "M", "L", "XL"];
+export const GROUPS = ["Male", "Female", "Kid", "Pet"];
+const COLORS_CAP = 5;
+const COLOR_PREFIX = "color_";
 
 class ProductFormPage extends Component {
   constructor(props){
     super(props);
     this.state = {
       colors: { },
-      freeColors: [...Array(COLORS_CAP).keys()]
+      freeColors: [...Array(COLORS_CAP).keys()],
+      groups: []
     };
   }
 
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
+  };
+
+  onGroupsChange = (e) => {
+    let selectedGroups = [];
+    for (let i = 0; i < e.target.length; i++)
+      if (e.target[i].selected)
+        selectedGroups.push(e.target[i].value);
+
+    this.setState({groups: selectedGroups});
   };
 
   addColor = () => {
@@ -62,7 +73,7 @@ class ProductFormPage extends Component {
 
   changeColor = (e) => {
 
-    var colorsObject = this.state.colors;
+    let colorsObject = this.state.colors;
 
     colorsObject[e.target.name] = e.target.value;
 
@@ -77,6 +88,9 @@ class ProductFormPage extends Component {
     form.append('product[description]', this.state.description);
     form.append('product[size]', this.state.size);
     form.append('product[colors]', JSON.stringify(this.state.colors));
+
+    for(let i = 0; i < this.state.groups.length; i++)
+      form.append('product[groups]', this.state.groups[i]);
 
     for(let i = 0; i < this.refs.photo.files.length; i++)
       form.append('product[photo]', this.refs.photo.files[i], this.refs.photo.files[i].name);
@@ -110,6 +124,16 @@ class ProductFormPage extends Component {
             label={this.props.intl.messages.productSize }
             options={ SIZES }
             onChange = { this.onChange }
+            multiple={false}
+          />
+
+
+          <SelectComponent
+            name="groups"
+            label="Groups"
+            options={ GROUPS }
+            onChange={this.onGroupsChange}
+            multiple={true}
           />
 
           <ColorsComponent
