@@ -20,6 +20,7 @@ export class ColorsComponent extends Component {
       items.push(<div key={'container_' + key}>
         <input type="text" name={key} key={key} value={props.colors[key]}
                onChange={props.changeColor} placeholder={props.placeholderColorLabel} />
+        <input ref="photo" type="file" multiple onChange={this.onFileLoad}/>
         <button onClick={props.removeColor} name={key} key={'delete_' + key}>{props.removeColorLabel}</button>
       </div>);
     })

@@ -12,7 +12,7 @@ const productSchema = new Schema({
   cuid: { type: 'String', required: true },
   price: { type: 'Number', required: true },
   size: { type: "String", required: true },
-  colors: { type: "String", required: true },
+  colors: { type: "Object", required: false },
   photos: [],
   groups: []
 });
