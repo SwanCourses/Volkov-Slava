@@ -18,9 +18,9 @@ export class ColorsComponent extends Component {
 
     Object.keys(this.props.colors).forEach(function (key) {
       items.push(<div key={'container_' + key}>
-        <input type="text" name={key} key={key} value={props.colors[key]}
+        <input type="text" name={key} key={key} value={props.colors[key].name}
                onChange={props.changeColor} placeholder={props.placeholderColorLabel} />
-        <input ref="photo" type="file" multiple onChange={this.onFileLoad}/>
+        <input ref="photo" type="file" multiple name={key} onChange={props.changeColorFiles}/>
         <button onClick={props.removeColor} name={key} key={'delete_' + key}>{props.removeColorLabel}</button>
       </div>);
     })
@@ -40,6 +40,7 @@ ColorsComponent.propTypes = {
   colors: PropTypes.object.isRequired,
   addColor: PropTypes.func.isRequired,
   removeColor: PropTypes.func.isRequired,
+  changeColorFiles: PropTypes.func.isRequired,
   changeColor: PropTypes.func.isRequired,
   addColorLabel: PropTypes.string.isRequired,
   removeColorLabel: PropTypes.string.isRequired,

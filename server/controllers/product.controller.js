@@ -39,10 +39,10 @@ export function addProduct(req, res) {
 
     let objectColors = newProduct.colors = JSON.parse(newProduct.colors);
     let index = 0;
-    
+
     Object.keys(objectColors).forEach(function(key) {
     newProduct.colors[key].name = sanitizeHtml(newProduct.colors[key].name);
-      for(let i = 0, file; file = colorsObj[key].files[i]; i++) {
+      for(let i = 0, file; file = objectColors[key].files[i]; i++) {
         newProduct.colors[key].files[i].filename = req.files[index].filename;
         newProduct.photos.push({ fileName: req.files[index].filename});
         index++;

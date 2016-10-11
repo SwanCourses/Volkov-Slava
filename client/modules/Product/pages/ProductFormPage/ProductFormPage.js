@@ -104,12 +104,9 @@ class ProductFormPage extends Component {
 
     Object.keys(colorsObject).forEach(function(key) {
       for (let i = 0; i < colorsObject[key].files.length; i++) {
-        form.append('product[photos]', colorsObject[key].files[i], colorsObject[key].files[i].name)
+        form.append('product[photo]', colorsObject[key].files[i], colorsObject[key].files[i].name)
       }
     });
-
-    for(let i = 0; i < this.refs.photo.files.length; i++)
-      form.append('product[photo]', this.refs.photo.files[i], this.refs.photo.files[i].name);
 
     this.props.dispatch(addProductRequest(form));
   };
@@ -160,7 +157,7 @@ class ProductFormPage extends Component {
             addColorLabel= { this.props.intl.messages.addColor }
             removeColorLabel={ this.props.intl.messages.removeColor }
             placeholderColorLabel={ this.props.intl.messages.productColorPlaceholder }
-            changeColorFiles = {this.onFileLoad}
+            changeColorFiles = {this.changeColorFiles}
           />
 
           <a className={styles['post-submit-button']} href="#" onClick={this.addProduct}><FormattedMessage id="submit"/></a>
