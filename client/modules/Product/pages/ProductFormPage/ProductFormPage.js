@@ -48,7 +48,7 @@ class ProductFormPage extends Component {
 
     var colorsObject = this.state.colors;
 
-    colorsObject[COLOR_PREFIX + this.state.freeColors[0]] = "";
+    colorsObject[COLOR_PREFIX + this.state.freeColors[0]] = {name: "", files: []};
     this.state.freeColors.splice(0, 1);
 
     this.setState({'colors': colorsObject});
@@ -75,9 +75,17 @@ class ProductFormPage extends Component {
 
     let colorsObject = this.state.colors;
 
-    colorsObject[e.target.name] = e.target.value;
+    colorsObject[e.target.name].name = e.target.value;
 
     this.setState({'colors': colorsObject});
+  };
+
+  changeColorFiles = (e) => {
+     let colorsObject = this.state.colors;
+
+     colorsObject[e.target.name].files = e.target.files;
+
+     this.setState({ colors: colorsObject });
   };
 
   addProduct = () => {
@@ -92,8 +100,13 @@ class ProductFormPage extends Component {
     for(let i = 0; i < this.state.groups.length; i++)
       form.append('product[groups]', this.state.groups[i]);
 
-    for(let i = 0; i < this.refs.photo.files.length; i++)
-      form.append('product[photo]', this.refs.photo.files[i], this.refs.photo.files[i].name);
+    let colorsObject = this.state.colors;
+
+    Object.keys(colorsObject).forEach(function(key) {
+      for (let i = 0; i < colorsObject[key].files.length; i++) {
+        form.append('product[photo]', colorsObject[key].files[i], colorsObject[key].files[i].name)
+      }
+    });
 
     this.props.dispatch(addProductRequest(form));
   };
@@ -144,11 +157,8 @@ class ProductFormPage extends Component {
             addColorLabel= { this.props.intl.messages.addColor }
             removeColorLabel={ this.props.intl.messages.removeColor }
             placeholderColorLabel={ this.props.intl.messages.productColorPlaceholder }
+            changeColorFiles = {this.changeColorFiles}
           />
-
-          <div className={styles.photos}>
-            <input ref="photo" type="file" multiple onChange={this.onFileLoad}/>
-          </div>
 
           <a className={styles['post-submit-button']} href="#" onClick={this.addProduct}><FormattedMessage id="submit"/></a>
 
@@ -167,4 +177,3 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(mapStateToProps)(injectIntl(ProductFormPage));
-

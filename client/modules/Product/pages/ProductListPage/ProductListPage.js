@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ProductListItem from '../../components/ProductListItem/ProductListItem';
 import { GROUPS } from '../ProductFormPage/ProductFormPage';
@@ -48,6 +49,8 @@ class ProductListPage extends Component {
               })
             }
           </div>
+
+          <Link to="/products/new">New product</Link>
         </div>
 
         <div className={styles.products}>
